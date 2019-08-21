@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Button from './components/Button/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -7,16 +8,19 @@ class App extends React.Component {
     this.state = {
       inputAge: "",
       activeColor: false,
+      inputOne:"",
+      inputTwo:"",
+      resultSum:""
     }
   }
 
   CheckAge(age) {
     let answer;
     console.log(age);
-    if(parseInt(this.state.inputAge) >= 18) {
-      answer="mayor";
+    if (parseInt(this.state.inputAge) >= 18) {
+      answer = "mayor";
     } else {
-      answer="menor";
+      answer = "menor";
     }
 
     this.setState({
@@ -25,20 +29,19 @@ class App extends React.Component {
   }
 
   handleChange(e) {
-    console.log(e.target.value);
+    const name = e.target.name;
+    const value = e.target.value;
     this.setState({
-      inputAge: e.target.value
-    }, ()=>{
-      console.log(1, this.state.inputAge)
+      [name]: parseInt(value)
     })
-
-    console.log(2, this.state.inputAge)
   }
+
+
 
   handleDelete() {
     this.setState({
-      answer:"",
-      inputAge:""
+      answer: "",
+      inputAge: ""
     })
   }
 
@@ -48,16 +51,34 @@ class App extends React.Component {
     })
   }
 
+  handleClick () {
+    const sum = this.state.inputOne + this.state.inputTwo;
+    console.log(sum);
+    this.setState({
+      resultSum: sum
+    })
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <input type="text" onChange={ e =>this.handleChange(e)} value={this.state.inputAge} />
+          <input type="text" 
+          name ="inputOne" 
+          onChange={(e)=>{this.handleChange(e)}}/>
+
+          <input type="text" 
+          name ="inputTwo" 
+          onChange={(e)=>{this.handleChange(e)}} />
+
+          <Button onChange={this.CheckAge} text="click me" />
+          <button onClick={()=>{this.handleClick()}}>Sum</button>
+          <h3>{this.state.resultSum}</h3>
           {/* se pone le e => para que ejecute con el evento, sino es arrow function */}
-          <button onClick={()=>this.CheckAge(10)}>Clickkkk me!</button>
-          <h1 className={this.state.activeColor ? "blue": "black"}>{this.state.answer}</h1>
-          <button onClick={()=>{this.handleDelete()}}>Borrar</button>
-          <button onClick={()=> {this.handleChangeColor()}}>Cambia de color</button>
+          <h1 className={this.state.activeColor ? "blue" : "black"}>{this.state.answer}</h1>
+          <Button text="delete" />
+          <Button text="change color" />
+
         </header>
       </div>
     )
