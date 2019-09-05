@@ -4,6 +4,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Carrito from './Components/Carrito';
 import Test from './Components/Test';
+import Dinamic from './Components/Dinamic/Dinamic';
+import Home from './Components/Home/Home';
+import Carrousel2 from '../src/Components/Carrousel2/Carrousel2';
 
 class App extends React.Component {
   constructor(props) {
@@ -27,10 +30,13 @@ class App extends React.Component {
     return (
       <div className="App">
         <Router>
-          <Route path="/carrito" component={Carrito}></Route>
-          <Route path="/test" component={Test}></Route>
+          <Route path="/carrito" component={Carrito} />
+          <Route path="/test" component={Test} />
+          <Route path="/dinamic/:test" component={Dinamic} />
+          <Route path="/" exact component={Home} />
+          <Route path="/carrousel/:site" component={Carrousel2} />
         </Router>
-        <Carrousel products={this.state.products} />
+        {/* <Carrousel products={this.state.products} /> */}
       </div>
     );
   }
