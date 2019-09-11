@@ -7,6 +7,7 @@ import Test from './Components/Test';
 import Dinamic from './Components/Dinamic/Dinamic';
 import Home from './Components/Home/Home';
 import Carrousel2 from '../src/Components/Carrousel2/Carrousel2';
+import Suma from '../src/Components/Suma/Suma';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends React.Component {
           <Route path="/dinamic/:test" component={Dinamic} />
           <Route path="/" exact component={Home} />
           <Route path="/carrousel/:site" component={Carrousel2} />
+          <Route path="/suma" component={Suma} />
         </Router>
         {/* <Carrousel products={this.state.products} /> */}
       </div>
