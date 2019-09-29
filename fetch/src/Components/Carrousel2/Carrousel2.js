@@ -38,7 +38,7 @@ class Carrousel2 extends React.Component {
                                 })
                             }
                         </div>
-                    )
+                    )}
             </React.Fragment>
         );
     }
